@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ortho-15</title>
+
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        body{
+            height:100%;
+            width: 100%;
+            background-color: #fcfcfc;
+            display: flex;
+            flex-direction: column;
+            min-height:100vh;
+        }
+
+        html{
+            height:10%;
+            width: 100%;
+        }
+
+        main{
+            margin-left: 4%;
+            margin-right: 4%;
+            flex-grow:1;
+            position: relative;
+            font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #333333;
+        }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            color: #f88400;
+            padding: 10px 20px 12px 80px;
+            margin-bottom: 15px;
+            box-shadow: 0px 1px 2px 0px rgba(142, 142, 142, 0.75);
+            
+            position: relative;
+        }
+
+        h1{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        h2{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-left: 3px;
+            font-size: 18px;
+        }
+        h3{
+            font-weight: bold;
+        }
+        .subHeader{
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .i{
+            font-style: italic;
+        }
+        .form{
+            margin-bottom: 15px;
+        }
+
+        .fieldsetDiv{
+            margin-bottom: 15px;
+        }
+
+        .fieldsetDiv select{
+            width: 200px;
+            height: 30px;
+            margin-top: 10px;
+            color: #333333;
+            border-color: #f88400;
+        }
+
+        .autoria{
+            margin-top: 50px;
+        }
+
+        .autoria a{
+			color: #3d3a3a;
+		}
+
+        .termos{
+            text-decoration: underline;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            color: gray;
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .result{
+            background-color: #ffffff;
+            border: 2px solid #f88400;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        footer{
+			font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 18px;
+			color: white;
+			width:100%;
+			left: 0px;
+			min-width: 100%;
+			background-color: #f88400;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			text-align: center;
+			margin-top: 15px;
+			border: 0;
+            width: 100% !important;
+			}
+        .footer{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Orto 15</h1>
+            <h2>Rastrear para tratar</h2>
+        </div>
+    </header>
+    
+    <main>
+        <div class="subHeader">
+            <p>Feito com base na  tradução e adaptação cultural de Pontes e Montagner sobre o trabalho de Donini <span class="i">et al</span>.</p>
+        </div>
+        <div class="form">
+            <form action="none" method="get" oninput="result()">
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>1 - Você fica atento(a) às calorias dos
+                            alimentos quando come?
+                        </p>
+                        <select name="select" id="selectId1">
+                            <option value="0">Selecione</option>
+                            <option value="2">Sempre</option>
+                            <option value="4">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="1">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>2 - Quando você vai a um mercado de
+                            alimentos, se sente confuso a respeito do
+                            que deve comprar?
+                        </p>
+                        <select name="select" id="selectId2">
+                            <option value="0">Selecione</option>
+                            <option value="4">Sempre</option>
+                            <option value="3">Muitas vezes</option>
+                            <option value="2">Algumas vezes</option>
+                            <option value="1">Nunca</option>
+                        </select>
+                    </div>
+                    <fieldset>
+                        <div class="fieldsetDiv">
+                            <p>3 - Nos últimos três meses, pensar sobre sua
+                                alimentação tem sido uma preocupação?
+                            </p>
+                            <select name="select" id="selectId3">
+                                <option value="0">Selecione</option>
+                                <option value="1">Sempre</option>
+                                <option value="2">Muitas vezes</option>
+                                <option value="3">Algumas vezes</option>
+                                <option value="4">Nunca</option>
+                            </select>
+                        </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>4 - As suas escolhas alimentares são
+                            determinadas pela preocupação com seu
+                            estado de saúde?                            
+                        </p>
+                        <select name="select" id="selectId4">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="fieldsetDiv">
+                            <p>5 -  O sabor é a qualidade mais importante
+                                que você leva em consideração ao escolher
+                                um alimento?                            
+                            </p>
+                            <select name="select" id="selectId5">
+                                <option value="0">Selecione</option>
+                                <option value="4">Sempre</option>
+                                <option value="3">Muitas vezes</option>
+                                <option value="2">Algumas vezes</option>
+                                <option value="1">Nunca</option>
+                            </select>
+                        </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>6 - Normalmente, você se dispõe a pagar
+                            mais por alimentos saudáveis?                            
+                        </p>
+                        <select name="select" id="selectId6">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>7 - A preocupação com alimentação saudável
+                            toma mais de três horas do seu dia?                            
+                        </p>
+                        <select name="select" id="selectId7">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>8 - Você se permite alguma quebra da sua
+                            rotina alimentar?                            
+                        </p>
+                        <select name="select" id="selectId8">
+                            <option value="0">Selecione</option>
+                            <option value="4">Sempre</option>
+                            <option value="3">Muitas vezes</option>
+                            <option value="2">Algumas vezes</option>
+                            <option value="1">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>9 - Para você, o seu humor influencia o seu
+                            comportamento alimentar?                            
+                        </p>
+                        <select name="select" id="selectId9">
+                            <option value="0">Selecione</option>
+                            <option value="4">Sempre</option>
+                            <option value="3">Muitas vezes</option>
+                            <option value="2">Algumas vezes</option>
+                            <option value="1">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>10 - Você acredita que a convicção de se
+                            alimentar saudavelmente aumenta sua
+                            autoestima?                            
+                        </p>
+                        <select name="select" id="selectId10">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>11 - Você acha que o consumo de alimentos
+                            saudáveis modifica seu estilo de vida (ida
+                            a restaurantes, amigos...)?                            
+                        </p>
+                        <select name="select" id="selectId11">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>12 - Você acredita que consumir alimentos
+                            saudáveis pode melhorar o seu aspecto
+                            físico?                            
+                        </p>
+                        <select name="select" id="selectId12">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>13 -  Sente-se culpado(a) quando sai da sua
+                            rotina alimentar?                            
+                        </p>
+                        <select name="select" id="selectId13">
+                            <option value="0">Selecione</option>
+                            <option value="2">Sempre</option>
+                            <option value="4">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="1">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>14 - Você pensa que no mercado existem
+                            alimentos não saudáveis?                            
+                        </p>
+                        <select name="select" id="selectId14">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="fieldsetDiv">
+                        <p>15 - Ultimamente, você costuma estar
+                            sozinho(a) quando se alimenta?                            
+                        </p>
+                        <select name="select" id="selectId15">
+                            <option value="0">Selecione</option>
+                            <option value="1">Sempre</option>
+                            <option value="2">Muitas vezes</option>
+                            <option value="3">Algumas vezes</option>
+                            <option value="4">Nunca</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+
+        <div class="p result">
+            <p id="pResult">Responda as questões para obter o resultado.</p>
+        </div>
+        <div>
+             <p>A sensibilidade do teste é de 100% e a especificidade 73,6%. Procurar profissionais de saúde é sempre necessário.</p></br>
+             <p>Ortorexia nervosa não é um diagnóstico reconhecido pelas sociedades médicas, mas identificar sinais de alerta é muito importante para uma intervenção precoce.</p>
+        </div>
+       
+
+        <section class="autoria">
+            <h3>Criadores: </h3></br>
+            <a class="lattes" href="http://lattes.cnpq.br/4993291222018594" target="_blank">Alan da Cruz Assis da Silva</a> e <a class="lattes" href="http://lattes.cnpq.br/3099747635787702" target="_blank">Suiane Costa Ferreira</a>
+        </section>
+
+        <div class="autoria">
+            <h3>REFERÊNCIAS</h3>
+            </br>
+            <p id="maisTexto2"class="description">
+                Donini LM, Marsili D, Graziani MP, Imbriale M, Cannella C. Orthorexia nervosa: a preliminary
+                study with a proposal for diagnosis and an attempt to measure the dimension of the phenomenon. Eat Weight Disord. 2004; 9(2):151-7.
+            </p></br>
+            <p>
+                Pontes, J., Montagner, M., & Montagner, M. (2014). ORTOREXIA NERVOSA: ADAPTAÇÃO CULTURAL DO ORTO-15. DEMETRA: Alimentação, Nutrição & Saúde, 9(2), 533-548. doi:https://doi.org/10.12957/demetra.2014.8576
+            </p>
+            </br>
+        </div>
+
+        <p class="termos">Termos de uso</p>
+    </main>
+    
+    <footer>
+        <div class="footer">
+            © Copyright UNEB
+        </div>
+    </footer>
+
+    <script>
+        function result(){
+            //SELECTION AREA
+            
+            var selectId1 = document.getElementById('selectId1');
+            var selectId2 = document.getElementById('selectId2');
+            var selectId3 = document.getElementById('selectId3');
+            var selectId4 = document.getElementById('selectId4');
+            var selectId5 = document.getElementById('selectId5');
+            var selectId6 = document.getElementById('selectId6');
+            var selectId7 = document.getElementById('selectId7');
+            var selectId8 = document.getElementById('selectId8');
+            var selectId9 = document.getElementById('selectId9');
+            var selectId10 = document.getElementById('selectId10');
+            var selectId11 = document.getElementById('selectId11');
+            var selectId12 = document.getElementById('selectId12');
+            var selectId13 = document.getElementById('selectId13');
+            var selectId14 = document.getElementById('selectId14');
+            var selectId15 = document.getElementById('selectId15');
+
+            selectId1 = selectId1.value*1;
+            selectId2 = selectId2.value*1;
+            selectId3 = selectId3.value*1;
+            selectId4 = selectId4.value*1;
+            selectId5 = selectId5.value*1;
+            selectId6 = selectId6.value*1;
+            selectId7 = selectId7.value*1;
+            selectId8 = selectId8.value*1;
+            selectId9 = selectId9.value*1;
+            selectId10 = selectId10.value*1;
+            selectId11 = selectId11.value*1;
+            selectId12 = selectId12.value*1;
+            selectId13 = selectId13.value*1;
+            selectId14 = selectId14.value*1;
+            selectId15 = selectId15.value*1;
+            
+            //ATRIBUITION AREA
+
+            var resultado = parseInt(selectId1 + selectId2 + selectId3 + selectId4 + selectId5 + selectId6 + selectId7 + selectId8 + selectId9 + selectId10 + selectId11 + selectId12 + selectId13 + selectId14 + selectId15);
+            
+            var pResult = document.getElementById('pResult');
+
+            if (selectId1>0&&selectId2>0&&selectId3>0&&selectId4>0&&selectId5>0&&selectId6>0&&selectId7>0&&selectId8>0&&selectId9>0&&selectId10>0&&selectId11>0&&selectId12>0&&selectId13>0&&selectId14>0&&selectId15>0&&resultado<40){
+                pResult.innerHTML = "";
+                pResult.innerHTML = "Pontuação = "+resultado+" pontos. Pontuações menores que 40 identificam Ortorexia nervosa.";
+            }
+            
+            if (selectId1>0&&selectId2>0&&selectId3>0&&selectId4>0&&selectId5>0&&selectId6>0&&selectId7>0&&selectId8>0&&selectId9>0&&selectId10>0&&selectId11>0&&selectId12>0&&selectId13>0&&selectId14>0&&selectId15>0&&resultado>=40){
+                pResult.innerHTML = "";
+                pResult.innerHTML = "Pontuação = "+resultado+" pontos. Pontuações maiores que 40 não identificam Ortorexia nervosa.";
+            }
+            
+
+            
+            
+
+        }
+    </script>
+
+</body>
+</html>
